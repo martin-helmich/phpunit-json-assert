@@ -13,5 +13,10 @@
         "phpunit/phpunit": ">=4.8"
     },
     "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Helmich\\JsonAssert\\": "src/"
+        }
     }
 }
