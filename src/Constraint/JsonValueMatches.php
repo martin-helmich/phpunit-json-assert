@@ -1,42 +1,35 @@
 <?php
 namespace Helmich\JsonAssert\Constraint;
 
-
 use Flow\JSONPath\JSONPath;
 use PHPUnit_Framework_Constraint as Constraint;
 
 
-class JsonValueEquals extends Constraint
+class JsonValueMatches extends Constraint
 {
 
 
 
-    /**
-     * @var
-     */
-    private $expectedValue;
-
-
-    /**
-     * @var
-     */
+    /** @var string */
     private $jsonPath;
 
 
-    /**
-     * @var bool
-     */
+    /** @var Constraint */
+    private $constraint;
+
+
+    /** @var bool */
     private $matchAll;
 
 
 
-    public function __construct($jsonPath, $expectedValue, $matchAll = FALSE)
+    public function __construct($jsonPath, Constraint $constraint, $matchAll = FALSE)
     {
         parent::__construct();
 
-        $this->expectedValue = $expectedValue;
-        $this->jsonPath      = $jsonPath;
-        $this->matchAll      = $matchAll;
+        $this->jsonPath   = $jsonPath;
+        $this->constraint = $constraint;
+        $this->matchAll   = $matchAll;
     }
 
 
@@ -48,7 +41,7 @@ class JsonValueEquals extends Constraint
      */
     public function toString()
     {
-        return "contains value '{$this->expectedValue}' at path '{$this->jsonPath}'";
+        return "matches " . $this->constraint->toString() . " at JSON path '{$this->jsonPath}'";
     }
 
 
@@ -85,11 +78,15 @@ class JsonValueEquals extends Constraint
 
         foreach ($result as $k => $v)
         {
-            $matches = $combineFunc($matches, $v == $this->expectedValue);
+            if ($v instanceof JSONPath)
+            {
+                $v = $v->data();
+            }
+
+            $singleMatchResult = $this->constraint->evaluate($v , '', TRUE);
+            $matches           = $combineFunc($matches, $singleMatchResult);
         }
 
         return $matches;
     }
-
-
 }

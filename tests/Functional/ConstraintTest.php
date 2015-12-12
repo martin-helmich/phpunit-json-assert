@@ -99,9 +99,66 @@ class ConstraintTest extends \PHPUnit_Framework_TestCase
 
 
 
+    /**
+     * @param $jsonDocument
+     * @param $jsonPath
+     * @param $expectedValue
+     * @dataProvider dataForJsonValueEquals
+     */
+    public function testJsonValueMatchesCanSucceed($jsonDocument, $jsonPath, $expectedValue)
+    {
+        $this->assertJsonValueMatches(
+            $jsonDocument,
+            $jsonPath,
+            new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
+        );
+    }
+
+
+
+    public function testJsonValueMatchesSucceedsWithAnyConstraint()
+    {
+        $this->assertJsonValueMatches(
+            static::$exampleDocument,
+            '$.products',
+            new \PHPUnit_Framework_Constraint_IsType('array')
+        );
+    }
+
+
+
+    /**
+     * @param $jsonDocument
+     * @param $jsonPath
+     * @param $expectedValue
+     * @dataProvider dataForJsonValueEqualsCanFail
+     * @expectedException \PHPUnit_Framework_AssertionFailedError
+     */
+    public function testJsonValueMatchesCanFail($jsonDocument, $jsonPath, $expectedValue)
+    {
+        $this->assertJsonValueMatches(
+            $jsonDocument,
+            $jsonPath,
+            new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
+        );
+    }
+
+
+
     public function testAssertThatAllValuesMatch()
     {
         $this->assertAllJsonValuesEqual(self::$exampleDocument, '$.products[*].category', 'Brot');
+    }
+
+
+
+    public function testAssertManyCanSucceed()
+    {
+        $this->assertJsonDocumentMatches(static::$exampleDocument, [
+            '$.identifier' => 1234,
+            '$.owner.name' => 'Max Mustermann',
+            '$.products' => new \PHPUnit_Framework_Constraint_Count(2)
+        ]);
     }
 
 }
