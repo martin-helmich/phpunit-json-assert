@@ -8,5 +8,10 @@
             "email": "m.helmich@mittwald.de"
         }
     ],
-    "require": {}
+    "require": {
+        "flow/jsonpath": "^0.3.1",
+        "phpunit/phpunit": ">=4.8"
+    },
+    "require-dev": {
+    }
 }
