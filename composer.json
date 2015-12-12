@@ -1,0 +1,12 @@
+{
+    "name": "helmich/phpunit-json-assert",
+    "description": "PHPUnit assertions for JSON documents",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Helmich",
+            "email": "m.helmich@mittwald.de"
+        }
+    ],
+    "require": {}
+}
