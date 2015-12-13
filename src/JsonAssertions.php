@@ -5,6 +5,7 @@ namespace Helmich\JsonAssert;
 use Helmich\JsonAssert\Constraint\JsonValueMatches;
 use Helmich\JsonAssert\Constraint\JsonValueMatchesMany;
 use PHPUnit_Framework_Constraint as Constraint;
+use PHPUnit_Framework_Assert as Assert;
 
 
 /**
@@ -14,10 +15,6 @@ use PHPUnit_Framework_Constraint as Constraint;
  */
 trait JsonAssertions
 {
-
-
-
-    abstract protected function assertThat($value, Constraint $constraint, $message = '');
 
 
 
@@ -34,9 +31,9 @@ trait JsonAssertions
      *                                 must match
      * @return void
      */
-    public function assertJsonValueMatches($jsonDocument, $jsonPath, Constraint $constraint)
+    public static function assertJsonValueMatches($jsonDocument, $jsonPath, Constraint $constraint)
     {
-        $this->assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint));
+        Assert::assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint));
     }
 
 
@@ -54,9 +51,9 @@ trait JsonAssertions
      *                                 must match
      * @return void
      */
-    public function assertAllJsonValuesMatch($jsonDocument, $jsonPath, Constraint $constraint)
+    public static function assertAllJsonValuesMatch($jsonDocument, $jsonPath, Constraint $constraint)
     {
-        $this->assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint, TRUE));
+        Assert::assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint, TRUE));
     }
 
 
@@ -73,9 +70,9 @@ trait JsonAssertions
      *                              equal to.
      * @return void
      */
-    public function assertJsonValueEquals($jsonDocument, $jsonPath, $expectedValue)
+    public static function assertJsonValueEquals($jsonDocument, $jsonPath, $expectedValue)
     {
-        $this->assertJsonValueMatches(
+        static::assertJsonValueMatches(
             $jsonDocument,
             $jsonPath,
             new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
@@ -97,9 +94,9 @@ trait JsonAssertions
      *                              equal to.
      * @return void
      */
-    public function assertAllJsonValuesEqual($jsonDocument, $jsonPath, $expectedValue)
+    public static function assertAllJsonValuesEqual($jsonDocument, $jsonPath, $expectedValue)
     {
-        $this->assertAllJsonValuesMatch(
+        static::assertAllJsonValuesMatch(
             $jsonDocument,
             $jsonPath,
             new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
@@ -119,9 +116,9 @@ trait JsonAssertions
      *                            matched by that expression must fulfill.
      * @return void
      */
-    public function assertJsonDocumentMatches($jsonDocument, array $constraints)
+    public static function assertJsonDocumentMatches($jsonDocument, array $constraints)
     {
-        $this->assertThat($jsonDocument, new JsonValueMatchesMany($constraints));
+        Assert::assertThat($jsonDocument, new JsonValueMatchesMany($constraints));
     }
 
 }
