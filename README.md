@@ -47,6 +47,44 @@ class MyTestCase extends PHPUnit_Framework_TestCase
 Most assertions take a `$jsonPath` argument which may contain any kind of
 expression supported by the [JSONPath][jsonpath] library.
 
+Alternatively, you can use the functional interface by including the file
+`src/Functions.php` into your test cases:
+
+```php
+<?php
+use Helmich\JsonAssert\JsonAssertions;
+
+require_once('path/to/Functions.php');
+
+class MyTestCase extends PHPUnit_Framework_TestCase
+{
+  use JsonAssertions;
+
+  public function testJsonDocumentIsValid()
+  {
+    $jsonDocument = [
+      'id'          => 1000,
+      'username'    => 'mhelmich',
+      'given_name'  => 'Martin',
+      'family_name' => 'Helmich',
+      'age'         => 27,
+      'hobbies'     => [
+        "Heavy Metal",
+        "Science Fiction",
+        "Open Source Software"
+      ]
+    ];
+
+    assertThat($jsonDocument, containsJsonValue('$.username', 'mhelmich'));
+    assertThat($jsonDocument, matchesJsonConstraints([
+        '$.given_name' => 'Martin',
+        '$.age'        => greaterThanOrEqual(18),
+        '$.hobbies'    => callback(function($a) { return count($a) > 2 })
+    ]));
+  }
+}
+```
+
 ## Assertion reference
 
 ##### `assertJsonValueEquals($doc, $jsonPath, $expected)`
