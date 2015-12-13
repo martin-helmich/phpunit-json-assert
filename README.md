@@ -1,5 +1,7 @@
 # JSON assertions for PHPUnit
 
+[![Build Status](https://travis-ci.org/martin-helmich/phpunit-json-assert.svg)](https://travis-ci.org/martin-helmich/phpunit-json-assert)
+
 ## Author and copyright
 
 Martin Helmich <kontakt@martin-helmich.de>  
