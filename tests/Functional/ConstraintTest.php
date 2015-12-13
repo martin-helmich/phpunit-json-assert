@@ -161,4 +161,18 @@ class ConstraintTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+
+
+    /**
+     * @expectedException \PHPUnit_Framework_AssertionFailedError
+     */
+    public function testAssertManyCanFail()
+    {
+        $this->assertJsonDocumentMatches(static::$exampleDocument, [
+            '$.identifier'       => 1234,
+            '$.owner.name'       => 'Max Mustermann',
+            '$.products[*].name' => 'Weißbrot',
+        ]);
+    }
+
 }
