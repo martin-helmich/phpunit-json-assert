@@ -5,6 +5,13 @@ use Flow\JSONPath\JSONPath;
 use PHPUnit_Framework_Constraint as Constraint;
 
 
+/**
+ * A simple constraints that asserts that a single value of a JSON document
+ * matches a given constraint.
+ *
+ * @package    Helmich\JsonAssert
+ * @subpackage Constraint
+ */
 class JsonValueMatches extends Constraint
 {
 
@@ -23,6 +30,22 @@ class JsonValueMatches extends Constraint
 
 
 
+    /**
+     * JsonValueMatches constructor.
+     *
+     * @param string     $jsonPath   The JSON path that identifies the value(s)
+     *                               in the JSON document that the constraint
+     *                               should match
+     * @param Constraint $constraint The actual constraint that the selected
+     *                               value(s) must match
+     * @param bool       $matchAll   This flag controls how this constraint
+     *                               handles multiple values. Usually, this
+     *                               constraint will match successfully, when
+     *                               (at least) one found value matches the
+     *                               given constraint. When this flag is set,
+     *                               _all_ found values must match the
+     *                               constraint.
+     */
     public function __construct($jsonPath, Constraint $constraint, $matchAll = FALSE)
     {
         parent::__construct();
@@ -46,6 +69,9 @@ class JsonValueMatches extends Constraint
 
 
 
+    /**
+     * @inheritdoc
+     */
     protected function matches($other)
     {
         if (is_string($other))
@@ -59,22 +85,8 @@ class JsonValueMatches extends Constraint
             return FALSE;
         }
 
-        if ($this->matchAll)
-        {
-            $combineFunc = function ($a, $b)
-            {
-                return ($a === NULL) ? $b : $a && $b;
-            };
-        }
-        else
-        {
-            $combineFunc = function ($a, $b)
-            {
-                return ($a === NULL) ? $b : $a || $b;
-            };
-        }
-
-        $matches = NULL;
+        $combineFunc = $this->buildCombinationFunction();
+        $matches     = NULL;
 
         foreach ($result as $k => $v)
         {
@@ -83,10 +95,33 @@ class JsonValueMatches extends Constraint
                 $v = $v->data();
             }
 
-            $singleMatchResult = $this->constraint->evaluate($v , '', TRUE);
+            $singleMatchResult = $this->constraint->evaluate($v, '', TRUE);
             $matches           = $combineFunc($matches, $singleMatchResult);
         }
 
         return $matches;
+    }
+
+
+
+    /**
+     * @return \Closure
+     */
+    protected function buildCombinationFunction()
+    {
+        if ($this->matchAll)
+        {
+            return function ($a, $b)
+            {
+                return ($a === NULL) ? $b : $a && $b;
+            };
+        }
+        else
+        {
+            return function ($a, $b)
+            {
+                return ($a === NULL) ? $b : $a || $b;
+            };
+        }
     }
 }
