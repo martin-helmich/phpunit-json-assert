@@ -47,8 +47,8 @@ class JsonValueMatchesMany extends Constraint
         return implode(
             ' and ',
             array_map(
-                function (Constraint $a) {
-                    return $a->toString();
+                function (Constraint $constraint) {
+                    return $constraint->toString();
                 },
                 $this->constraints
             )

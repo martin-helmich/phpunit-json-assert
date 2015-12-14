@@ -75,7 +75,7 @@ class JsonValueMatches extends Constraint
         $combineFunc = $this->buildCombinationFunction();
         $matches     = null;
 
-        foreach ($result as $k => $v) {
+        foreach ($result as $v) {
             if ($v instanceof JSONPath) {
                 $v = $v->data();
             }
@@ -93,13 +93,13 @@ class JsonValueMatches extends Constraint
     protected function buildCombinationFunction()
     {
         if ($this->matchAll) {
-            return function ($a, $b) {
-                return ($a === null) ? $b : $a && $b;
-            };
-        } else {
-            return function ($a, $b) {
-                return ($a === null) ? $b : $a || $b;
+            return function ($first, $second) {
+                return ($first === null) ? $second : $first && $second;
             };
         }
+
+        return function ($first, $second) {
+            return ($first === null) ? $second : $first || $second;
+        };
     }
 }
