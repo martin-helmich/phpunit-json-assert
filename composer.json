@@ -13,10 +13,17 @@
         "phpunit/phpunit": ">=4.8"
     },
     "require-dev": {
+        "codeclimate/php-test-reporter": "dev-master"
     },
     "autoload": {
         "psr-4": {
             "Helmich\\JsonAssert\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "files": [
+            "vendor/phpunit/phpunit/src/Framework/Assert/Functions.php",
+            "src/Functions.php"
+        ]
     }
 }
