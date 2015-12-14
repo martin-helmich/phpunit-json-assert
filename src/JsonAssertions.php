@@ -1,12 +1,10 @@
 <?php
 namespace Helmich\JsonAssert;
 
-
 use Helmich\JsonAssert\Constraint\JsonValueMatches;
 use Helmich\JsonAssert\Constraint\JsonValueMatchesMany;
-use PHPUnit_Framework_Constraint as Constraint;
 use PHPUnit_Framework_Assert as Assert;
-
+use PHPUnit_Framework_Constraint as Constraint;
 
 /**
  * A trait that can be used in test classes for easy use of JSON assertions
@@ -15,8 +13,6 @@ use PHPUnit_Framework_Assert as Assert;
  */
 trait JsonAssertions
 {
-
-
 
     /**
      * Asserts that at least one of a set of JSON values in a document match a
@@ -36,8 +32,6 @@ trait JsonAssertions
         Assert::assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint));
     }
 
-
-
     /**
      * Asserts that all of a set of JSON values in a document match a given
      * constraint
@@ -53,10 +47,8 @@ trait JsonAssertions
      */
     public static function assertAllJsonValuesMatch($jsonDocument, $jsonPath, Constraint $constraint)
     {
-        Assert::assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint, TRUE));
+        Assert::assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint, true));
     }
-
-
 
     /**
      * Asserts that at least one of a set of JSON values in a document is equal
@@ -78,8 +70,6 @@ trait JsonAssertions
             new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
         );
     }
-
-
 
     /**
      * Asserts that all of a set of JSON values in a document are equal to a
@@ -103,8 +93,6 @@ trait JsonAssertions
         );
     }
 
-
-
     /**
      * Asserts that a JSON document matches an entire set of constraints.
      *
@@ -120,5 +108,4 @@ trait JsonAssertions
     {
         Assert::assertThat($jsonDocument, new JsonValueMatchesMany($constraints));
     }
-
 }

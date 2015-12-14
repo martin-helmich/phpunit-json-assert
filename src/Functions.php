@@ -2,8 +2,7 @@
 
 function containsJsonValue($path, $constraint)
 {
-    if (!$constraint instanceof PHPUnit_Framework_Constraint)
-    {
+    if (!$constraint instanceof PHPUnit_Framework_Constraint) {
         $constraint = new PHPUnit_Framework_Constraint_IsEqual($constraint);
     }
 

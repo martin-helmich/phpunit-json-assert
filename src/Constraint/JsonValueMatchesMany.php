@@ -1,9 +1,7 @@
 <?php
 namespace Helmich\JsonAssert\Constraint;
 
-
 use PHPUnit_Framework_Constraint as Constraint;
-
 
 /**
  * Constraint that asserts that a JSON document matches an entire set of JSON
@@ -15,12 +13,8 @@ use PHPUnit_Framework_Constraint as Constraint;
 class JsonValueMatchesMany extends Constraint
 {
 
-
-
     /** @var JsonValueMatches[] */
     private $constraints = array();
-
-
 
     /**
      * JsonValueMatchesMany constructor.
@@ -34,18 +28,14 @@ class JsonValueMatchesMany extends Constraint
     {
         parent::__construct();
 
-        foreach ($constraints as $key => $constraint)
-        {
-            if (!$constraint instanceof Constraint)
-            {
+        foreach ($constraints as $key => $constraint) {
+            if (!$constraint instanceof Constraint) {
                 $constraint = new \PHPUnit_Framework_Constraint_IsEqual($constraint);
             }
 
             $this->constraints[] = new JsonValueMatches($key, $constraint);
         }
     }
-
-
 
     /**
      * Returns a string representation of the object.
@@ -57,8 +47,7 @@ class JsonValueMatchesMany extends Constraint
         return implode(
             ' and ',
             array_map(
-                function (Constraint $a)
-                {
+                function (Constraint $a) {
                     return $a->toString();
                 },
                 $this->constraints
@@ -66,22 +55,16 @@ class JsonValueMatchesMany extends Constraint
         );
     }
 
-
-
     /**
      * @inheritdoc
      */
     protected function matches($other)
     {
-        foreach ($this->constraints as $constraint)
-        {
-            if (!$constraint->evaluate($other, '', TRUE))
-            {
-                return FALSE;
+        foreach ($this->constraints as $constraint) {
+            if (!$constraint->evaluate($other, '', true)) {
+                return false;
             }
         }
-        return TRUE;
+        return true;
     }
-
-
 }

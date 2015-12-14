@@ -4,7 +4,6 @@ namespace Helmich\JsonAssert\Constraint;
 use Flow\JSONPath\JSONPath;
 use PHPUnit_Framework_Constraint as Constraint;
 
-
 /**
  * A simple constraints that asserts that a single value of a JSON document
  * matches a given constraint.
@@ -15,20 +14,14 @@ use PHPUnit_Framework_Constraint as Constraint;
 class JsonValueMatches extends Constraint
 {
 
-
-
     /** @var string */
     private $jsonPath;
-
 
     /** @var Constraint */
     private $constraint;
 
-
     /** @var bool */
     private $matchAll;
-
-
 
     /**
      * JsonValueMatches constructor.
@@ -46,7 +39,7 @@ class JsonValueMatches extends Constraint
      *                               _all_ found values must match the
      *                               constraint.
      */
-    public function __construct($jsonPath, Constraint $constraint, $matchAll = FALSE)
+    public function __construct($jsonPath, Constraint $constraint, $matchAll = false)
     {
         parent::__construct();
 
@@ -54,8 +47,6 @@ class JsonValueMatches extends Constraint
         $this->constraint = $constraint;
         $this->matchAll   = $matchAll;
     }
-
-
 
     /**
      * Returns a string representation of the object.
@@ -67,60 +58,47 @@ class JsonValueMatches extends Constraint
         return "matches " . $this->constraint->toString() . " at JSON path '{$this->jsonPath}'";
     }
 
-
-
     /**
      * @inheritdoc
      */
     protected function matches($other)
     {
-        if (is_string($other))
-        {
+        if (is_string($other)) {
             $other = json_decode($other);
         }
 
         $result = (new JSONPath($other))->find($this->jsonPath);
-        if (!isset($result[0]))
-        {
-            return FALSE;
+        if (!isset($result[0])) {
+            return false;
         }
 
         $combineFunc = $this->buildCombinationFunction();
-        $matches     = NULL;
+        $matches     = null;
 
-        foreach ($result as $k => $v)
-        {
-            if ($v instanceof JSONPath)
-            {
+        foreach ($result as $k => $v) {
+            if ($v instanceof JSONPath) {
                 $v = $v->data();
             }
 
-            $singleMatchResult = $this->constraint->evaluate($v, '', TRUE);
+            $singleMatchResult = $this->constraint->evaluate($v, '', true);
             $matches           = $combineFunc($matches, $singleMatchResult);
         }
 
         return $matches;
     }
 
-
-
     /**
      * @return \Closure
      */
     protected function buildCombinationFunction()
     {
-        if ($this->matchAll)
-        {
-            return function ($a, $b)
-            {
-                return ($a === NULL) ? $b : $a && $b;
+        if ($this->matchAll) {
+            return function ($a, $b) {
+                return ($a === null) ? $b : $a && $b;
             };
-        }
-        else
-        {
-            return function ($a, $b)
-            {
-                return ($a === NULL) ? $b : $a || $b;
+        } else {
+            return function ($a, $b) {
+                return ($a === null) ? $b : $a || $b;
             };
         }
     }
