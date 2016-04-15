@@ -13,3 +13,8 @@ function matchesJsonConstraints(array $constraints)
 {
     return new \Helmich\JsonAssert\Constraint\JsonValueMatchesMany($constraints);
 }
+
+function matchesJsonSchema(array $schema)
+{
+    return new \Helmich\JsonAssert\Constraint\JsonValueMatchesSchema($schema);
+}

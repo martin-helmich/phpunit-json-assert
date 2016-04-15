@@ -3,7 +3,7 @@ namespace Helmich\JsonAssert\Tests\Functional;
 
 use Helmich\JsonAssert\JsonAssertions;
 
-class ConstraintTest extends \PHPUnit_Framework_TestCase
+class JsonValueMatchesTest extends \PHPUnit_Framework_TestCase
 {
 
     use JsonAssertions;

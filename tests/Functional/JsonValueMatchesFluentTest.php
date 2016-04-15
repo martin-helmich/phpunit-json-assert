@@ -3,7 +3,7 @@ namespace Helmich\JsonAssert\Tests\Functional;
 
 use PHPUnit_Framework_TestCase as TestCase;
 
-class FluentConstraintTest extends TestCase
+class JsonValueMatchesFluentTest extends TestCase
 {
 
     private static $exampleDocument = [
@@ -25,12 +25,6 @@ class FluentConstraintTest extends TestCase
             ],
         ],
     ];
-
-    public function setUp()
-    {
-        require_once(__DIR__ . '/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php');
-        require_once(__DIR__ . '/../../src/Functions.php');
-    }
 
     public function testAssertThatJsonDocumentContainsJsonValue()
     {
