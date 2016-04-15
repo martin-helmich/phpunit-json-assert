@@ -69,8 +69,8 @@ class JsonValueMatchesSchema extends Constraint
         $validator = new Validator();
         $validator->check($other, $this->schema);
 
-        return implode("\n", array_map(function ($e) {
-            return $e['message'];
+        return implode("\n", array_map(function ($error) {
+            return $error['message'];
         }, $validator->getErrors()));
     }
 
