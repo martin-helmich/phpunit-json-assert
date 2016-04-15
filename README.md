@@ -84,7 +84,7 @@ class MyTestCase extends PHPUnit_Framework_TestCase
     assertThat($jsonDocument, matchesJsonConstraints([
         '$.given_name' => 'Martin',
         '$.age'        => greaterThanOrEqual(18),
-        '$.hobbies'    => callback(function($a) { return count($a) > 2 })
+        '$.hobbies'    => callback(function($a) { return count($a) > 2; })
     ]));
   }
 }
@@ -127,4 +127,22 @@ $this->assertJsonDocumentMatches($jsonDocument, [
 ]);
 ```
 
+##### `assertJsonDocumentMatchesSchema($doc, $schema)`
+
+Assert that a given JSON document matches a certain [JSON schema][jsonschema].
+
+Example:
+
+```php
+$this->assertJsonDocumentMatchesSchema($jsonDocument, [
+    'type'       => 'object',
+    'required'   => ['username', 'age'],
+    'properties' => [
+        'username' => ['type' => 'string', 'minLength' => 3],
+        'age'      => ['type' => 'number']
+    ]
+]);
+```
+
 [jsonpath]: https://packagist.org/packages/flow/jsonpath
+[jsonschema]: http://json-schema.org/

@@ -3,6 +3,7 @@ namespace Helmich\JsonAssert;
 
 use Helmich\JsonAssert\Constraint\JsonValueMatches;
 use Helmich\JsonAssert\Constraint\JsonValueMatchesMany;
+use Helmich\JsonAssert\Constraint\JsonValueMatchesSchema;
 use PHPUnit_Framework_Assert as Assert;
 use PHPUnit_Framework_Constraint as Constraint;
 
@@ -107,5 +108,18 @@ trait JsonAssertions
     public static function assertJsonDocumentMatches($jsonDocument, array $constraints)
     {
         Assert::assertThat($jsonDocument, new JsonValueMatchesMany($constraints));
+    }
+
+    /**
+     * Assert that a JSON document matches a given JSON schema.
+     *
+     * @param mixed $jsonDocument A JSON document. If this is a string, it will
+     *                            be assumed to be an encoded JSON document
+     * @param array $schema       A JSON schema
+     * @return void
+     */
+    public static function assertJsonDocumentMatchesSchema($jsonDocument, $schema)
+    {
+        Assert::assertThat($jsonDocument, new JsonValueMatchesSchema($schema));
     }
 }
