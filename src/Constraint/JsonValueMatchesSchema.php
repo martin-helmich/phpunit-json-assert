@@ -39,6 +39,10 @@ class JsonValueMatchesSchema extends Constraint
      */
     private function forceToObject($jsonDocument)
     {
+        if (is_string($jsonDocument)) {
+            return json_decode($jsonDocument);
+        }
+
         return json_decode(json_encode($jsonDocument));
     }
 

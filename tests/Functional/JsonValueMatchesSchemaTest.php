@@ -72,4 +72,15 @@ class JsonValueMatchesSchemaTest extends TestCase
             ]
         ]);
     }
+
+    public function testStringsAreInterpretedAsJsonString()
+    {
+        $this->assertJsonDocumentMatchesSchema('{"foo": 123}', [
+            'type'     => 'object',
+            'required' => ['foo'],
+            'properties' => [
+                'foo' => ['type' => 'number']
+            ]
+        ]);
+    }
 }
