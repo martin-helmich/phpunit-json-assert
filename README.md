@@ -12,7 +12,7 @@ This library is [MIT-licensed](LICENSE.txt).
 
 ## Installation
 
-    $ composer require helmich/phpunit-json-assert
+    $ composer require --dev helmich/phpunit-json-assert
 
 ## Usage
 
