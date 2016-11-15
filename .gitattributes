@@ -4,7 +4,6 @@
 .codeclimate.yml export-ignore
 .gitignore export-ignore
 .travis.yml export-ignore
-LICENSE.txt export-ignore
 phpunit.xml export-ignore
 README.md export-ignore
 tests/ export-ignore
