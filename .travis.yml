@@ -3,7 +3,6 @@ sudo: false
 php:
   - 7.1
   - 7.0
-  - hhvm
 install:
   - composer install --prefer-dist
 script:
