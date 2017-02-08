@@ -10,7 +10,7 @@
     ],
     "require": {
         "flow/jsonpath": "^0.3.1",
-        "phpunit/phpunit": ">=4.8",
+        "phpunit/phpunit": ">=4.8,<6.0",
         "justinrainbow/json-schema": "^2.0"
     },
     "require-dev": {
