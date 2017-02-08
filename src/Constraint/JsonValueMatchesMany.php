@@ -1,10 +1,8 @@
 <?php
 namespace Helmich\JsonAssert\Constraint;
 
-
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsEqual;
-
 
 /**
  * Constraint that asserts that a JSON document matches an entire set of JSON
