@@ -6,7 +6,7 @@ use Helmich\JsonAssert\Constraint\JsonValueMatchesSchema;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsEqual;
 
-function containsJsonValue($path, $constraint)
+function containsJsonValue(string $path, $constraint): JsonValueMatches
 {
     if (!$constraint instanceof Constraint) {
         $constraint = new IsEqual($constraint);
@@ -15,12 +15,12 @@ function containsJsonValue($path, $constraint)
     return new JsonValueMatches($path, $constraint);
 }
 
-function matchesJsonConstraints(array $constraints)
+function matchesJsonConstraints(array $constraints): JsonValueMatchesMany
 {
     return new JsonValueMatchesMany($constraints);
 }
 
-function matchesJsonSchema(array $schema)
+function matchesJsonSchema(array $schema): JsonValueMatchesSchema
 {
     return new JsonValueMatchesSchema($schema);
 }

@@ -37,7 +37,7 @@ class JsonValueMatchesSchema extends Constraint
      * @param array|stdClass $jsonDocument
      * @return stdClass
      */
-    private function forceToObject($jsonDocument)
+    private function forceToObject($jsonDocument): stdClass
     {
         if (is_string($jsonDocument)) {
             return json_decode($jsonDocument);
@@ -49,7 +49,7 @@ class JsonValueMatchesSchema extends Constraint
     /**
      * @inheritdoc
      */
-    protected function matches($other)
+    protected function matches($other): bool
     {
         $other = $this->forceToObject($other);
 
@@ -62,7 +62,7 @@ class JsonValueMatchesSchema extends Constraint
     /**
      * @inheritdoc
      */
-    protected function additionalFailureDescription($other)
+    protected function additionalFailureDescription($other): string
     {
         $other = $this->forceToObject($other);
 
@@ -79,7 +79,7 @@ class JsonValueMatchesSchema extends Constraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return 'matches JSON schema';
     }

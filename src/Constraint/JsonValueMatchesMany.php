@@ -45,7 +45,7 @@ class JsonValueMatchesMany extends Constraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return implode(
             ' and ',
@@ -61,7 +61,7 @@ class JsonValueMatchesMany extends Constraint
     /**
      * @inheritdoc
      */
-    protected function matches($other)
+    protected function matches($other): bool
     {
         foreach ($this->constraints as $constraint) {
             if (!$constraint->evaluate($other, '', true)) {
