@@ -4,8 +4,9 @@ namespace Helmich\JsonAssert;
 use Helmich\JsonAssert\Constraint\JsonValueMatches;
 use Helmich\JsonAssert\Constraint\JsonValueMatchesMany;
 use Helmich\JsonAssert\Constraint\JsonValueMatchesSchema;
-use PHPUnit_Framework_Assert as Assert;
-use PHPUnit_Framework_Constraint as Constraint;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\Constraint\IsEqual;
 
 /**
  * A trait that can be used in test classes for easy use of JSON assertions
@@ -68,7 +69,7 @@ trait JsonAssertions
         static::assertJsonValueMatches(
             $jsonDocument,
             $jsonPath,
-            new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
+            new IsEqual($expectedValue)
         );
     }
 
@@ -90,7 +91,7 @@ trait JsonAssertions
         static::assertAllJsonValuesMatch(
             $jsonDocument,
             $jsonPath,
-            new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
+            new IsEqual($expectedValue)
         );
     }
 

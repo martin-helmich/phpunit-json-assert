@@ -1,7 +1,10 @@
 <?php
 namespace Helmich\JsonAssert\Constraint;
 
-use PHPUnit_Framework_Constraint as Constraint;
+
+use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\Constraint\IsEqual;
+
 
 /**
  * Constraint that asserts that a JSON document matches an entire set of JSON
@@ -30,7 +33,7 @@ class JsonValueMatchesMany extends Constraint
 
         foreach ($constraints as $key => $constraint) {
             if (!$constraint instanceof Constraint) {
-                $constraint = new \PHPUnit_Framework_Constraint_IsEqual($constraint);
+                $constraint = new IsEqual($constraint);
             }
 
             $this->constraints[] = new JsonValueMatches($key, $constraint);

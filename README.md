@@ -23,8 +23,9 @@ cases:
 ```php
 <?php
 use Helmich\JsonAssert\JsonAssertions;
+use PHPUnit\Framework\TestCase;
 
-class MyTestCase extends PHPUnit_Framework_TestCase
+class MyTestCase extends TestCase
 {
   use JsonAssertions;
 
@@ -58,10 +59,11 @@ Alternatively, you can use the functional interface by including the file
 ```php
 <?php
 use Helmich\JsonAssert\JsonAssertions;
+use PHPUnit\Framework\TestCase;
 
 require_once('path/to/Functions.php');
 
-class MyTestCase extends PHPUnit_Framework_TestCase
+class MyTestCase extends TestCase
 {
   use JsonAssertions;
 

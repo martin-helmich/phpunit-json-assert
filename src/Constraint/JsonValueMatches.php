@@ -2,7 +2,7 @@
 namespace Helmich\JsonAssert\Constraint;
 
 use Flow\JSONPath\JSONPath;
-use PHPUnit_Framework_Constraint as Constraint;
+use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * A simple constraints that asserts that a single value of a JSON document

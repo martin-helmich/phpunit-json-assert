@@ -2,7 +2,7 @@
 namespace Helmich\JsonAssert\Constraint;
 
 use JsonSchema\Validator;
-use PHPUnit_Framework_Constraint as Constraint;
+use PHPUnit\Framework\Constraint\Constraint;
 use stdClass;
 
 /**

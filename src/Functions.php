@@ -1,20 +1,26 @@
 <?php
 
+use Helmich\JsonAssert\Constraint\JsonValueMatches;
+use Helmich\JsonAssert\Constraint\JsonValueMatchesMany;
+use Helmich\JsonAssert\Constraint\JsonValueMatchesSchema;
+use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\Constraint\IsEqual;
+
 function containsJsonValue($path, $constraint)
 {
-    if (!$constraint instanceof PHPUnit_Framework_Constraint) {
-        $constraint = new PHPUnit_Framework_Constraint_IsEqual($constraint);
+    if (!$constraint instanceof Constraint) {
+        $constraint = new IsEqual($constraint);
     }
 
-    return new \Helmich\JsonAssert\Constraint\JsonValueMatches($path, $constraint);
+    return new JsonValueMatches($path, $constraint);
 }
 
 function matchesJsonConstraints(array $constraints)
 {
-    return new \Helmich\JsonAssert\Constraint\JsonValueMatchesMany($constraints);
+    return new JsonValueMatchesMany($constraints);
 }
 
 function matchesJsonSchema(array $schema)
 {
-    return new \Helmich\JsonAssert\Constraint\JsonValueMatchesSchema($schema);
+    return new JsonValueMatchesSchema($schema);
 }
