@@ -2,7 +2,7 @@
 namespace Helmich\JsonAssert\Tests\Functional;
 
 use Helmich\JsonAssert\JsonAssertions;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class JsonValueMatchesSchemaTest extends TestCase
 {
@@ -60,7 +60,7 @@ class JsonValueMatchesSchemaTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit_Framework_AssertionFailedError
+     * @expectedException \PHPUnit\Framework\AssertionFailedError
      */
     public function testJsonDocumentDoesNotMatchSchema()
     {

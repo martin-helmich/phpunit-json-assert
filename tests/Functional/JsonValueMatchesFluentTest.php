@@ -1,7 +1,7 @@
 <?php
 namespace Helmich\JsonAssert\Tests\Functional;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class JsonValueMatchesFluentTest extends TestCase
 {
