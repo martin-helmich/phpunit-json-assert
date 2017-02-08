@@ -105,7 +105,7 @@ the constraint `$constraint`.
 Example:
 
 ```php
-$this->assertJsonVauleMatches(
+$this->assertJsonValueMatches(
   $jsonDocument,
   '$.age',
   PHPUnit_Framework_Assert::greaterThanOrEqual(18)
