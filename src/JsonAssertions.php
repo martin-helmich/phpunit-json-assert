@@ -29,7 +29,7 @@ trait JsonAssertions
      *                                 must match
      * @return void
      */
-    public static function assertJsonValueMatches($jsonDocument, string $jsonPath, Constraint $constraint): void
+    public static function assertJsonValueMatches($jsonDocument, string $jsonPath, Constraint $constraint)
     {
         Assert::assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint));
     }
@@ -47,7 +47,7 @@ trait JsonAssertions
      *                                 must match
      * @return void
      */
-    public static function assertAllJsonValuesMatch($jsonDocument, string $jsonPath, Constraint $constraint): void
+    public static function assertAllJsonValuesMatch($jsonDocument, string $jsonPath, Constraint $constraint)
     {
         Assert::assertThat($jsonDocument, new JsonValueMatches($jsonPath, $constraint, true));
     }
@@ -64,7 +64,7 @@ trait JsonAssertions
      *                              equal to.
      * @return void
      */
-    public static function assertJsonValueEquals($jsonDocument, string $jsonPath, $expectedValue): void
+    public static function assertJsonValueEquals($jsonDocument, string $jsonPath, $expectedValue)
     {
         static::assertJsonValueMatches(
             $jsonDocument,
@@ -86,7 +86,7 @@ trait JsonAssertions
      *                              equal to.
      * @return void
      */
-    public static function assertAllJsonValuesEqual($jsonDocument, string $jsonPath, $expectedValue): void
+    public static function assertAllJsonValuesEqual($jsonDocument, string $jsonPath, $expectedValue)
     {
         static::assertAllJsonValuesMatch(
             $jsonDocument,
@@ -106,7 +106,7 @@ trait JsonAssertions
      *                            matched by that expression must fulfill.
      * @return void
      */
-    public static function assertJsonDocumentMatches($jsonDocument, array $constraints): void
+    public static function assertJsonDocumentMatches($jsonDocument, array $constraints)
     {
         Assert::assertThat($jsonDocument, new JsonValueMatchesMany($constraints));
     }
@@ -119,7 +119,7 @@ trait JsonAssertions
      * @param array $schema       A JSON schema
      * @return void
      */
-    public static function assertJsonDocumentMatchesSchema($jsonDocument, $schema): void
+    public static function assertJsonDocumentMatchesSchema($jsonDocument, $schema)
     {
         Assert::assertThat($jsonDocument, new JsonValueMatchesSchema($schema));
     }
