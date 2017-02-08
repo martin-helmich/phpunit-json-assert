@@ -14,6 +14,11 @@ This library is [MIT-licensed](LICENSE.txt).
 
     $ composer require --dev helmich/phpunit-json-assert
 
+**Compatibility notice**: [Version 1](https://github.com/martin-helmich/phpunit-json-assert/tree/v1)
+(the `v1` branch) of this library is compatible with PHPUnit 4.8 to 5. [Version 2](https://github.com/martin-helmich/phpunit-json-assert/tree/master)
+(the `master` branch) is compatible with PHPUnit 6 and later. When using `composer require`, Composer should automatically
+pick the correct version for you.
+
 ## Usage
 
 Simply use the trait `Helmich\JsonAssert\JsonAssertions` in your test case. This
@@ -23,8 +28,9 @@ cases:
 ```php
 <?php
 use Helmich\JsonAssert\JsonAssertions;
+use PHPUnit\Framework\TestCase;
 
-class MyTestCase extends PHPUnit_Framework_TestCase
+class MyTestCase extends TestCase
 {
   use JsonAssertions;
 
@@ -58,10 +64,11 @@ Alternatively, you can use the functional interface by including the file
 ```php
 <?php
 use Helmich\JsonAssert\JsonAssertions;
+use PHPUnit\Framework\TestCase;
 
 require_once('path/to/Functions.php');
 
-class MyTestCase extends PHPUnit_Framework_TestCase
+class MyTestCase extends TestCase
 {
   use JsonAssertions;
 

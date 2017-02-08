@@ -2,7 +2,7 @@
 namespace Helmich\JsonAssert\Constraint;
 
 use Flow\JSONPath\JSONPath;
-use PHPUnit_Framework_Constraint as Constraint;
+use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * A simple constraints that asserts that a single value of a JSON document
@@ -39,7 +39,7 @@ class JsonValueMatches extends Constraint
      *                               _all_ found values must match the
      *                               constraint.
      */
-    public function __construct($jsonPath, Constraint $constraint, $matchAll = false)
+    public function __construct(string $jsonPath, Constraint $constraint, bool $matchAll = false)
     {
         parent::__construct();
 
@@ -53,7 +53,7 @@ class JsonValueMatches extends Constraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return "matches " . $this->constraint->toString() . " at JSON path '{$this->jsonPath}'";
     }
@@ -61,7 +61,7 @@ class JsonValueMatches extends Constraint
     /**
      * @inheritdoc
      */
-    protected function matches($other)
+    protected function matches($other): bool
     {
         if (is_string($other)) {
             $other = json_decode($other);
@@ -88,9 +88,9 @@ class JsonValueMatches extends Constraint
     }
 
     /**
-     * @return \Closure
+     * @return callable
      */
-    protected function buildCombinationFunction()
+    protected function buildCombinationFunction(): callable
     {
         if ($this->matchAll) {
             return function ($first, $second) {

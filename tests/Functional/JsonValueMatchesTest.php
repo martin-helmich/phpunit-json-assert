@@ -2,8 +2,12 @@
 namespace Helmich\JsonAssert\Tests\Functional;
 
 use Helmich\JsonAssert\JsonAssertions;
+use PHPUnit\Framework\Constraint\Count;
+use PHPUnit\Framework\Constraint\IsEqual;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
 
-class JsonValueMatchesTest extends \PHPUnit_Framework_TestCase
+class JsonValueMatchesTest extends TestCase
 {
 
     use JsonAssertions;
@@ -78,7 +82,7 @@ class JsonValueMatchesTest extends \PHPUnit_Framework_TestCase
      * @param $jsonPath
      * @param $expectedValue
      * @dataProvider dataForJsonValueEqualsCanFail
-     * @expectedException \PHPUnit_Framework_AssertionFailedError
+     * @expectedException \PHPUnit\Framework\AssertionFailedError
      */
     public function testJsonValueEqualsCanFail($jsonDocument, $jsonPath, $expectedValue)
     {
@@ -96,7 +100,7 @@ class JsonValueMatchesTest extends \PHPUnit_Framework_TestCase
         $this->assertJsonValueMatches(
             $jsonDocument,
             $jsonPath,
-            new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
+            new IsEqual($expectedValue)
         );
     }
 
@@ -105,7 +109,7 @@ class JsonValueMatchesTest extends \PHPUnit_Framework_TestCase
         $this->assertJsonValueMatches(
             static::$exampleDocument,
             '$.products',
-            new \PHPUnit_Framework_Constraint_IsType('array')
+            new IsType('array')
         );
     }
 
@@ -114,14 +118,14 @@ class JsonValueMatchesTest extends \PHPUnit_Framework_TestCase
      * @param $jsonPath
      * @param $expectedValue
      * @dataProvider dataForJsonValueEqualsCanFail
-     * @expectedException \PHPUnit_Framework_AssertionFailedError
+     * @expectedException \PHPUnit\Framework\AssertionFailedError
      */
     public function testJsonValueMatchesCanFail($jsonDocument, $jsonPath, $expectedValue)
     {
         $this->assertJsonValueMatches(
             $jsonDocument,
             $jsonPath,
-            new \PHPUnit_Framework_Constraint_IsEqual($expectedValue)
+            new IsEqual($expectedValue)
         );
     }
 
@@ -137,13 +141,13 @@ class JsonValueMatchesTest extends \PHPUnit_Framework_TestCase
             [
                 '$.identifier' => 1234,
                 '$.owner.name' => 'Max Mustermann',
-                '$.products' => new \PHPUnit_Framework_Constraint_Count(2)
+                '$.products' => new Count(2)
             ]
         );
     }
 
     /**
-     * @expectedException \PHPUnit_Framework_AssertionFailedError
+     * @expectedException \PHPUnit\Framework\AssertionFailedError
      */
     public function testAssertManyCanFail()
     {
