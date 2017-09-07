@@ -30,14 +30,14 @@ class JsonValueMatchesSchema extends Constraint
     }
 
     /**
-     * VERY dirty hack to force a JSON document into an instance of the stdClass class.
+     * VERY dirty hack to force a JSON document into an object.
      *
      * Yell if you can think of something better.
      *
      * @param array|stdClass $jsonDocument
      * @return stdClass
      */
-    private function forceToObject($jsonDocument): stdClass
+    private function forceToObject($jsonDocument)
     {
         if (is_string($jsonDocument)) {
             return json_decode($jsonDocument);
