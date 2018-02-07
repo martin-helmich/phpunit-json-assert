@@ -10,9 +10,9 @@
     ],
     "require": {
         "flow/jsonpath": "^0.3.1",
-        "phpunit/phpunit": ">=6.0",
+        "phpunit/phpunit": "^7.0",
         "justinrainbow/json-schema": "^5.0",
-        "php": ">=7.0"
+        "php": ">=7.1"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "dev-master"
