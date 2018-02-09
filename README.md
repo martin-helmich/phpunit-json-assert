@@ -18,8 +18,8 @@ This library is [MIT-licensed](LICENSE.txt).
 
 There are several release branches of this library, each of these being compatible with different releases of PHPUnit and PHP. The following table should give an easy overview:
 
-| PSR-7 assertion version | PHPUnit 4 | PHPUnit 5 | PHPUnit 6 | PHPUnit 7 |
-| ----------------------- | --------- | --------- | --------- | --------- |
+| "JSON assertion" version | PHPUnit 4 | PHPUnit 5 | PHPUnit 6 | PHPUnit 7 |
+| ------------------------ | --------- | --------- | --------- | --------- |
 | v1 (branch `v1`), **unsupported** | :white_check_mark: | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
 | v2 (branch `master`) | :no_entry_sign: | :no_entry_sign: | :white_check_mark: | :white_check_mark: |
 
