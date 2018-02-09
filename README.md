@@ -5,6 +5,11 @@
 [![Test Coverage](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/coverage.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/coverage)
 [![Issue Count](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/issue_count.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert)
 
+This library adds several new assertions to [PHPUnit](https://phpunit.de/)
+that allow you to easily and concisely verify complex data structures (often,
+but not necessarily, JSON documents) using JSONPath expressions and JSON
+schemas.
+
 ## Author and copyright
 
 Martin Helmich <kontakt@martin-helmich.de>  
