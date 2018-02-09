@@ -14,10 +14,16 @@ This library is [MIT-licensed](LICENSE.txt).
 
     $ composer require --dev helmich/phpunit-json-assert
 
-**Compatibility notice**: [Version 1](https://github.com/martin-helmich/phpunit-json-assert/tree/v1)
-(the `v1` branch) of this library is compatible with PHPUnit 4.8 to 5. [Version 2](https://github.com/martin-helmich/phpunit-json-assert/tree/master)
-(the `master` branch) is compatible with PHPUnit 6 and later. When using `composer require`, Composer should automatically
-pick the correct version for you.
+## Compatibility
+
+There are several release branches of this library, each of these being compatible with different releases of PHPUnit and PHP. The following table should give an easy overview:
+
+| PSR-7 assertion version | PHPUnit 4 | PHPUnit 5 | PHPUnit 6 | PHPUnit 7 |
+| ----------------------- | --------- | --------- | --------- | --------- |
+| v1 (branch `v1`), **unsupported** | :white_check_mark: | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
+| v2 (branch `master`) | :no_entry_sign: | :no_entry_sign: | :white_check_mark: | :white_check_mark: |
+
+When you are using `composer require` and have already declared a dependency to `phpunit/phpunit` in your `composer.json` file, Composer should pick latest compatible version automatically.
 
 ## Usage
 
