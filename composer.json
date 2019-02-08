@@ -9,13 +9,12 @@
         }
     ],
     "require": {
-        "php": "^7.0",
-        "flow/jsonpath": "^0.3.4",
-        "phpunit/phpunit": "^7.0",
+        "php": "^7.2",
+        "flow/jsonpath": "^0.4.0",
         "justinrainbow/json-schema": "^5.0"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "dev-master"
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "psr-4": {
