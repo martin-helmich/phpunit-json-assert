@@ -9,13 +9,15 @@
         }
     ],
     "require": {
-        "flow/jsonpath": "^0.3.1",
-        "phpunit/phpunit": ">=6.0",
-        "justinrainbow/json-schema": "^5.0",
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "flow/jsonpath": "^0.4.0",
+        "justinrainbow/json-schema": "^5.0"
+    },
+    "conflict": {
+        "phpunit/phpunit": "<6.0 || >= 8.0"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "dev-master"
+        "phpunit/phpunit": "^6.0 | ^7.0"
     },
     "autoload": {
         "psr-4": {
@@ -27,5 +29,8 @@
             "vendor/phpunit/phpunit/src/Framework/Assert/Functions.php",
             "src/Functions.php"
         ]
+    },
+    "config": {
+        "sort-packages": true
     }
 }
