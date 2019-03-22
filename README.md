@@ -12,7 +12,7 @@ schemas.
 
 ## Author and copyright
 
-Martin Helmich <kontakt@martin-helmich.de>
+Martin Helmich <kontakt@martin-helmich.de>  
 This library is [MIT-licensed](LICENSE.txt).
 
 ## Installation
