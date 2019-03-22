@@ -27,8 +27,6 @@ class JsonValueMatchesMany extends Constraint
      */
     public function __construct(array $constraints)
     {
-        parent::__construct();
-
         foreach ($constraints as $key => $constraint) {
             if (!$constraint instanceof Constraint) {
                 $constraint = new IsEqual($constraint);

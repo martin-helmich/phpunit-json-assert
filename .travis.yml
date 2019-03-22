@@ -3,7 +3,6 @@ sudo: false
 php:
   - 7.3
   - 7.2
-  - 7.1
 install:
   - composer install --optimize-autoloader --prefer-dist --no-interaction
 before_script:
