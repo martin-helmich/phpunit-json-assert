@@ -2,6 +2,7 @@
 namespace Helmich\JsonAssert\Tests\Functional;
 
 use Helmich\JsonAssert\JsonAssertions;
+use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Constraint\Count;
 use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\Constraint\IsType;
@@ -82,10 +83,11 @@ class JsonValueMatchesTest extends TestCase
      * @param $jsonPath
      * @param $expectedValue
      * @dataProvider dataForJsonValueEqualsCanFail
-     * @expectedException \PHPUnit\Framework\AssertionFailedError
      */
     public function testJsonValueEqualsCanFail($jsonDocument, $jsonPath, $expectedValue)
     {
+        $this->expectException(AssertionFailedError::class);
+
         $this->assertJsonValueEquals($jsonDocument, $jsonPath, $expectedValue);
     }
 
@@ -118,10 +120,11 @@ class JsonValueMatchesTest extends TestCase
      * @param $jsonPath
      * @param $expectedValue
      * @dataProvider dataForJsonValueEqualsCanFail
-     * @expectedException \PHPUnit\Framework\AssertionFailedError
      */
     public function testJsonValueMatchesCanFail($jsonDocument, $jsonPath, $expectedValue)
     {
+        $this->expectException(AssertionFailedError::class);
+
         $this->assertJsonValueMatches(
             $jsonDocument,
             $jsonPath,
@@ -146,11 +149,10 @@ class JsonValueMatchesTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \PHPUnit\Framework\AssertionFailedError
-     */
     public function testAssertManyCanFail()
     {
+        $this->expectException(AssertionFailedError::class);
+
         $this->assertJsonDocumentMatches(
             static::$exampleDocument,
             [

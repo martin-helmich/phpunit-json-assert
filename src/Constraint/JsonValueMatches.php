@@ -41,8 +41,6 @@ class JsonValueMatches extends Constraint
      */
     public function __construct(string $jsonPath, Constraint $constraint, bool $matchAll = false)
     {
-        parent::__construct();
-
         $this->jsonPath   = $jsonPath;
         $this->constraint = $constraint;
         $this->matchAll   = $matchAll;

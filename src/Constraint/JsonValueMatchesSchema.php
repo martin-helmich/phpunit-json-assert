@@ -25,7 +25,6 @@ class JsonValueMatchesSchema extends Constraint
      */
     public function __construct($schema)
     {
-        parent::__construct();
         $this->schema = $this->forceToObject($schema);
     }
 
