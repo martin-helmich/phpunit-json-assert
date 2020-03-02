@@ -2,6 +2,10 @@
 namespace Helmich\JsonAssert\Tests\Functional;
 
 use PHPUnit\Framework\TestCase;
+use function PHPUnit\Framework\assertThat;
+use function PHPUnit\Framework\equalTo;
+use function PHPUnit\Framework\greaterThanOrEqual;
+use function PHPUnit\Framework\logicalNot;
 
 class JsonValueMatchesFluentTest extends TestCase
 {
@@ -28,18 +32,18 @@ class JsonValueMatchesFluentTest extends TestCase
 
     public function testAssertThatJsonDocumentContainsJsonValue()
     {
-        $this->assertThat(self::$exampleDocument, containsJsonValue('$.identifier', 1234));
+        assertThat(self::$exampleDocument, containsJsonValue('$.identifier', 1234));
     }
 
     public function testAssertThatJsonDocumentMatchesJsonConstraints()
     {
-        $this->assertThat(
+        assertThat(
             self::$exampleDocument,
             matchesJsonConstraints(
                 [
-                    '$.owner.name' => $this->equalTo('Max Mustermann'),
-                    '$.products[*].identifier' => $this->greaterThanOrEqual(500),
-                    '$.products[*].name' => $this->logicalNot($this->equalTo('Weißbrot'))
+                    '$.owner.name' => equalTo('Max Mustermann'),
+                    '$.products[*].identifier' => greaterThanOrEqual(500),
+                    '$.products[*].name' => logicalNot(equalTo('Weißbrot'))
                 ]
             )
         );

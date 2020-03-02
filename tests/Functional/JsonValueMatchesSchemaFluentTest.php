@@ -4,6 +4,7 @@ namespace Helmich\JsonAssert\Tests\Functional;
 use Helmich\JsonAssert\JsonAssertions;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
+use function PHPUnit\Framework\assertThat;
 
 class JsonValueMatchesSchemaFluentTest extends TestCase
 {
@@ -31,7 +32,7 @@ class JsonValueMatchesSchemaFluentTest extends TestCase
 
     public function testJsonDocumentMatchesSchema()
     {
-        $this->assertThat(static::$exampleDocument, matchesJsonSchema([
+        assertThat(static::$exampleDocument, matchesJsonSchema([
             'type'       => 'object',
             'required'   => ['identifier', 'owner', 'products'],
             'properties' => [
@@ -64,7 +65,7 @@ class JsonValueMatchesSchemaFluentTest extends TestCase
     {
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertThat(static::$exampleDocument, matchesJsonSchema([
+        assertThat(static::$exampleDocument, matchesJsonSchema([
             'type' => 'object',
             'required' => ['foobar'],
             'properties' => [
