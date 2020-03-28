@@ -1,6 +1,6 @@
 # JSON assertions for PHPUnit
 
-[![Build Status](https://travis-ci.org/martin-helmich/phpunit-json-assert.svg)](https://travis-ci.org/martin-helmich/phpunit-json-assert)
+![Unit tests](https://github.com/martin-helmich/phpunit-json-assert/workflows/Unit%20tests/badge.svg)
 [![Code Climate](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/gpa.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert)
 [![Test Coverage](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/coverage.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/coverage)
 [![Issue Count](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/issue_count.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert)
