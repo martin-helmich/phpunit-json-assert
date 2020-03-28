@@ -1,4 +1,4 @@
-name: PHP type checking and unit testing
+name: Unit tests
 
 on: [push]
 
