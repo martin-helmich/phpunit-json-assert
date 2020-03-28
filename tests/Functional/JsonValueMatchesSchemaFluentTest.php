@@ -31,7 +31,7 @@ class JsonValueMatchesSchemaFluentTest extends TestCase
 
     public function testJsonDocumentMatchesSchema()
     {
-        assertThat(static::$exampleDocument, matchesJsonSchema([
+        $this->assertThat(static::$exampleDocument, matchesJsonSchema([
             'type'       => 'object',
             'required'   => ['identifier', 'owner', 'products'],
             'properties' => [
@@ -64,7 +64,7 @@ class JsonValueMatchesSchemaFluentTest extends TestCase
     {
         $this->expectException(AssertionFailedError::class);
 
-        assertThat(static::$exampleDocument, matchesJsonSchema([
+        $this->assertThat(static::$exampleDocument, matchesJsonSchema([
             'type' => 'object',
             'required' => ['foobar'],
             'properties' => [
