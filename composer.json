@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^7.2 || ^7.3",
+        "php": "^7.2",
         "flow/jsonpath": "^0.5.0",
         "justinrainbow/json-schema": "^5.0"
     },
