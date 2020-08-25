@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    strategy:      
+    strategy:
       matrix:
         php: ['7.2', '7.3', '7.4', '8.0']
         phpunit: ['8.0', '9.0']
@@ -46,27 +46,3 @@ jobs:
       
     - name: Run unit tests
       run: ./vendor/bin/phpunit --testdox
-
-  coverage:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v1
-      with:
-        php-version: 7.4
-        extensions: mbstring, intl, json
-        coverage: pcov
-    
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-  
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v2.3.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.codeClimateReporterID }}
-      with:
-        coverageCommand: ./vendor/bin/phpunit --coverage-clover=clover.xml
-        debug: true
