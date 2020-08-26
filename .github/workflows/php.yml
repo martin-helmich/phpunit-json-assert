@@ -37,7 +37,6 @@ jobs:
         php-version: ${{ matrix.php }}
         extensions: mbstring, intl, json
         coverage: pcov
-        tools: composer:v2
     
     - name: Validate composer.json and composer.lock
       run: composer validate
