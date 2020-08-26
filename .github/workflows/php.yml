@@ -20,7 +20,8 @@ jobs:
           - php: '7.2'
             phpunit: '9.0'
     runs-on: ubuntu-latest
-
+    continue-on-error: ${{ matrix.php == '8.0' }}
+    
     steps:
     - uses: actions/checkout@v1
       
