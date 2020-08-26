@@ -14,11 +14,11 @@ jobs:
       matrix:
         php: ['7.2', '7.3', '7.4']
         phpunit: ['8.0', '9.0']
-        stability: ['prefer-stable']
+        composer-arg: ['']
         include:
           - php: '8.0'
             phpunit: '9.0'
-            stability: 'ignore-platform-req=php'
+            composer-arg: 'ignore-platform-req=php'
         exclude:
           - php: '8.0'
             phpunit: '8.0'
@@ -46,7 +46,7 @@ jobs:
         composer require --no-update --dev phpunit/phpunit ~${{ matrix.phpunit }}
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest --${{ matrix.stability }}
+      run: composer install --prefer-dist --no-progress --no-suggest --${{ matrix.composer-arg }}
 
     #- name: Run type checker
     #  run: ./vendor/bin/psalm
