@@ -1,0 +1,47 @@
+---
+name: Unit tests
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - 'composer.json'
+    branches:
+      - 'v2'
+  pull_request:
+    paths:
+      - '**.php'
+      - 'composer.json'
+    branches:
+      - 'v2'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '7.0', '7.1' ]
+    name: PHP ${{ matrix.php }}
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json
+
+      - name: Validate composer.json
+        run: composer validate
+
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-progress
+
+      - name: Run unit tests
+        run: ./vendor/bin/phpunit

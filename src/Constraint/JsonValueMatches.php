@@ -77,7 +77,7 @@ class JsonValueMatches extends Constraint
 
         foreach ($result as $v) {
             if ($v instanceof JSONPath) {
-                $v = $v->data();
+                $v = $v->getData();
             }
 
             $singleMatchResult = $this->constraint->evaluate($v, '', true);
