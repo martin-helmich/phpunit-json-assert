@@ -1,55 +1,52 @@
+---
 name: Unit tests
 
 on:
   push:
+    paths:
+      - '**.php'
+      - 'composer.json'
     branches:
-      - 'master'
-    tags:
       - '*'
+      - '!v1'
+      - '!v2'
   pull_request:
+    paths:
+      - '**.php'
+      - 'composer.json'
+    branches:
+      - '*'
+      - '!v1'
+      - '!v2'
+  workflow_dispatch:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.2', '7.3', '7.4']
-        phpunit: ['8.0', '9.0']
-        composer-arg: ['']
-        include:
-          - php: '8.0'
-            phpunit: '9.0'
-            composer-arg: 'ignore-platform-req=php'
-        exclude:
-          - php: '8.0'
-            phpunit: '8.0'
-          - php: '7.2'
-            phpunit: '9.0'
-    runs-on: ubuntu-latest
+        php: [ '7.2', '7.3', '7.4', '8.0' ]
     continue-on-error: ${{ matrix.php == '8.0' }}
-    name: PHP ${{ matrix.php }}, PHPUnit ${{ matrix.phpunit }}
-    
+    name: PHP ${{ matrix.php }}
+
     steps:
-    - uses: actions/checkout@v1
-      
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v1
-      with:
-        php-version: ${{ matrix.php }}
-        extensions: mbstring, intl, json
-        coverage: pcov
-        tools: composer:v2
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: Git checkout
+        uses: actions/checkout@v2
 
-    - name: Declare required PHPUnit version
-      run: |
-        composer require --no-update --dev phpunit/phpunit ~${{ matrix.phpunit }}
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest --${{ matrix.composer-arg }}
+      - name: Validate composer.json
+        run: composer validate
 
-    #- name: Run type checker
-    #  run: ./vendor/bin/psalm
-      
-    - name: Run unit tests
-      run: ./vendor/bin/phpunit --testdox
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-progress
+
+      - name: Run unit tests
+        run: ./vendor/bin/phpunit
