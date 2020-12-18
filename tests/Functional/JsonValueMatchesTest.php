@@ -47,6 +47,14 @@ class JsonValueMatchesTest extends TestCase
             array($json, '$.products[*].name', 'Roggenbrot'),
             array($json, '$.products[0].name', 'Roggenbrot'),
             array($json, '$.products.*.name', 'Graubrot'),
+            array($json, '$.owner', [
+                'identifier' => '4321',
+                'name' => 'Max Mustermann',
+            ]),
+            array(json_encode($json), '$.owner', [
+                'identifier' => '4321',
+                'name' => 'Max Mustermann',
+            ]),
         ];
     }
 
@@ -64,6 +72,8 @@ class JsonValueMatchesTest extends TestCase
             array($json, '$.owner.name', 'Horst Mustermann'),
             array($json, '$.products.*.name', 'Weißbrot'),
             array($json, '$.products[0].name', 'Graubrot'),
+            array($json, '$.owner', []),
+            array(json_encode($json), '$.owner', []),
         ];
     }
 

@@ -62,7 +62,7 @@ class JsonValueMatches extends Constraint
     protected function matches($other): bool
     {
         if (is_string($other)) {
-            $other = json_decode($other);
+            $other = json_decode($other, true);
         }
 
         $result = (new JSONPath($other))->find($this->jsonPath);
