@@ -17,9 +17,6 @@ class JsonValueMatchesMany extends Constraint
     /** @var JsonValueMatches[] */
     private $constraints = array();
 
-    /** @var string[] */
-    private $failedConstraints = array();
-
     /**
      * JsonValueMatchesMany constructor.
      *
@@ -62,14 +59,12 @@ class JsonValueMatchesMany extends Constraint
      */
     protected function matches($other): bool
     {
-        $result = true;
         foreach ($this->constraints as $constraint) {
             if (!$constraint->evaluate($other, '', true)) {
-                $result = false;
-                $this->failedConstraints[] = $constraint->toString();
+                return false;
             }
         }
-        return $result;
+        return true;
     }
 
     /**
@@ -79,6 +74,15 @@ class JsonValueMatchesMany extends Constraint
      */
     protected function additionalFailureDescription($other): string
     {
-        return "\n" . implode("\n", $this->failedConstraints);
+        /** @var string[] */
+        $failedConstraints = array();
+
+        foreach ($this->constraints as $constraint) {
+            if (!$constraint->evaluate($other, '', true)) {
+                $failedConstraints[] = $constraint->toString();
+            }
+        }
+        
+        return "\n" . implode("\n", $failedConstraints);
     }
 }
