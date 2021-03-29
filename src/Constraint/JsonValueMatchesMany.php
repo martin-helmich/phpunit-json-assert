@@ -69,7 +69,7 @@ class JsonValueMatchesMany extends Constraint
 
     /**
      * Returns a string representation of matches that evaluate to false.
-     * 
+     *
      * @return string
      */
     protected function additionalFailureDescription($other): string
