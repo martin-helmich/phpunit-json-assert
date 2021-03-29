@@ -66,4 +66,23 @@ class JsonValueMatchesMany extends Constraint
         }
         return true;
     }
+
+    /**
+     * Returns a string representation of matches that evaluate to false.
+     *
+     * @return string
+     */
+    protected function additionalFailureDescription($other): string
+    {
+        /** @var string[] */
+        $failedConstraints = array();
+
+        foreach ($this->constraints as $constraint) {
+            if (!$constraint->evaluate($other, '', true)) {
+                $failedConstraints[] = $constraint->toString();
+            }
+        }
+        
+        return "\n" . implode("\n", $failedConstraints);
+    }
 }
