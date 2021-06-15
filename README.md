@@ -54,14 +54,20 @@ class MyTestCase extends TestCase
       'given_name'  => 'Martin',
       'family_name' => 'Helmich',
       'age'         => 27,
+      'phones' => [
+        'mobile' => 111,
+        'home'   => 222,
+      ],
       'hobbies'     => [
-        "Heavy Metal",
-        "Science Fiction",
-        "Open Source Software"
+        'Heavy Metal',
+        'Science Fiction',
+        'Open Source Software',
       ]
     ];
 
     $this->assertJsonValueEquals($jsonDocument, '$.username', 'mhelmich');
+    $this->assertJsonValueEquals($jsonDocument, '$.phones.mobile', 111);
+    $this->assertJsonValueEquals($jsonDocument, '$.hobbies.0', 'Heavy Metal');
     $this->assertJsonValueEquals($jsonDocument, '$.hobbies[*]', 'Open Source Software');
   }
 }
