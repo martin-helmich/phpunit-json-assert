@@ -169,5 +169,5 @@ $this->assertJsonDocumentMatchesSchema($jsonDocument, [
 ]);
 ```
 
-[jsonpath]: https://packagist.org/packages/flow/jsonpath
+[jsonpath]: https://packagist.org/packages/softcreatr/jsonpath
 [jsonschema]: http://json-schema.org/
