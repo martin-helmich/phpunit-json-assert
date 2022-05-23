@@ -16,7 +16,6 @@ jobs:
         phpunit: ['8.0', '9.0']
         composer-arg: ['']
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.php == '8.0' }}
     name: PHP ${{ matrix.php }}, PHPUnit ${{ matrix.phpunit }}
     
     steps:
