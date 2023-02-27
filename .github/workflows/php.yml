@@ -14,7 +14,9 @@ jobs:
       matrix:
         php: ['8.0', '8.1', '8.2']
         phpunit: ['8.0', '9.0', '10.0']
-        composer-arg: ['']
+        exclude:
+          - php: 8.0
+          - phpunit: 10.0
     runs-on: ubuntu-latest
     name: PHP ${{ matrix.php }}, PHPUnit ${{ matrix.phpunit }}
     
@@ -37,7 +39,7 @@ jobs:
         composer require --no-update --dev phpunit/phpunit ~${{ matrix.phpunit }}
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest --${{ matrix.composer-arg }}
+      run: composer install --prefer-dist --no-progress --no-suggest
 
     #- name: Run type checker
     #  run: ./vendor/bin/psalm
