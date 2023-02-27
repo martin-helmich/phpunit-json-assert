@@ -33,7 +33,7 @@ class JsonValueMatchesTest extends TestCase
         ],
     ];
 
-    public function dataForJsonValueEquals()
+    public static function dataForJsonValueEquals()
     {
         $json = static::$exampleDocument;
 
@@ -58,7 +58,7 @@ class JsonValueMatchesTest extends TestCase
         ];
     }
 
-    public function dataForJsonValueEqualsCanFail()
+    public static function dataForJsonValueEqualsCanFail()
     {
         $json = static::$exampleDocument;
 

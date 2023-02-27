@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         php: ['8.0', '8.1', '8.2']
-        phpunit: ['8.0', '9.0']
+        phpunit: ['8.0', '9.0', '10.0']
         composer-arg: ['']
     runs-on: ubuntu-latest
     name: PHP ${{ matrix.php }}, PHPUnit ${{ matrix.phpunit }}
