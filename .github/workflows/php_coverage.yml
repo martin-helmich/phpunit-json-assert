@@ -1,4 +1,4 @@
-name: Unit tests
+name: Code coverage
 
 on:
   push:
@@ -17,10 +17,10 @@ jobs:
         php-version: 8.0
         extensions: mbstring, intl, json
         coverage: pcov
-    
+
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
-  
+
     - name: Test & publish code coverage
       uses: paambaati/codeclimate-action@v3.0.0
       env:
