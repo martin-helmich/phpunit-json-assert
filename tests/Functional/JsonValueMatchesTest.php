@@ -3,6 +3,7 @@ namespace Helmich\JsonAssert\Tests\Functional;
 
 use Helmich\JsonAssert\JsonAssertions;
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Count;
 use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\Constraint\IsType;
@@ -83,6 +84,7 @@ class JsonValueMatchesTest extends TestCase
      * @param $expectedValue
      * @dataProvider dataForJsonValueEquals
      */
+    #[DataProvider('dataForJsonValueEquals')]
     public function testJsonValueEqualsCanSucceed($jsonDocument, $jsonPath, $expectedValue)
     {
         $this->assertJsonValueEquals($jsonDocument, $jsonPath, $expectedValue);
@@ -94,6 +96,7 @@ class JsonValueMatchesTest extends TestCase
      * @param $expectedValue
      * @dataProvider dataForJsonValueEqualsCanFail
      */
+    #[DataProvider('dataForJsonValueEqualsCanFail')]
     public function testJsonValueEqualsCanFail($jsonDocument, $jsonPath, $expectedValue)
     {
         $this->expectException(AssertionFailedError::class);
@@ -107,6 +110,7 @@ class JsonValueMatchesTest extends TestCase
      * @param $expectedValue
      * @dataProvider dataForJsonValueEquals
      */
+    #[DataProvider('dataForJsonValueEquals')]
     public function testJsonValueMatchesCanSucceed($jsonDocument, $jsonPath, $expectedValue)
     {
         $this->assertJsonValueMatches(
@@ -131,6 +135,7 @@ class JsonValueMatchesTest extends TestCase
      * @param $expectedValue
      * @dataProvider dataForJsonValueEqualsCanFail
      */
+    #[DataProvider('dataForJsonValueEqualsCanFail')]
     public function testJsonValueMatchesCanFail($jsonDocument, $jsonPath, $expectedValue)
     {
         $this->expectException(AssertionFailedError::class);
