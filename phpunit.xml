@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
         bootstrap="vendor/autoload.php"
         colors="true"
         timeoutForSmallTests="1"
@@ -9,19 +9,21 @@
         timeoutForLargeTests="60"
         cacheDirectory=".phpunit.cache">
     <testsuites>
-        <testsuite name="functional">
-            <directory>tests/Functional</directory>
-        </testsuite>
+      <testsuite name="functional">
+        <directory>tests/Functional</directory>
+      </testsuite>
     </testsuites>
     <logging>
-        <junit outputFile="build/phpunit"/>
+      <junit outputFile="build/phpunit"/>
     </logging>
     <coverage>
-        <include>
-            <directory suffix=".php">src</directory>
-        </include>
-        <report>
-            <html outputDirectory="build/coverage" lowUpperBound="35" highLowerBound="70"/>
-        </report>
+      <report>
+        <html outputDirectory="build/coverage" lowUpperBound="35" highLowerBound="70"/>
+      </report>
     </coverage>
+    <source>
+      <include>
+        <directory suffix=".php">src</directory>
+      </include>
+    </source>
 </phpunit>
