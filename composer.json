@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "softcreatr/jsonpath": "^0.8",
+        "softcreatr/jsonpath": "^0.9",
         "justinrainbow/json-schema": "^5.0"
     },
     "conflict": {
