@@ -4,10 +4,13 @@ namespace Helmich\JsonAssert\Tests\Functional;
 use Helmich\JsonAssert\JsonAssertions;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Constraint\Count;
 use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\NativeType;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Runner\Version;
 
 class JsonValueMatchesTest extends TestCase
 {
@@ -122,10 +125,18 @@ class JsonValueMatchesTest extends TestCase
 
     public function testJsonValueMatchesSucceedsWithAnyConstraint()
     {
+        $type = 'array';
+
+        // Required for PHPUnit 12 support as starting from PHPUnit
+        // version 12 IsTypeclass expects an enum of NativeType.
+        if (str_starts_with(Version::id(), '12.')) {
+            $type = NativeType::Array;
+        }
+
         $this->assertJsonValueMatches(
             static::$exampleDocument,
             '$.products',
-            new IsType('array')
+            new IsType($type)
         );
     }
 
