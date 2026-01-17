@@ -1,9 +1,8 @@
 # JSON assertions for PHPUnit
 
 ![Unit tests](https://github.com/martin-helmich/phpunit-json-assert/workflows/Unit%20tests/badge.svg)
-[![Code Climate](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/gpa.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert)
-[![Test Coverage](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/coverage.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/coverage)
-[![Issue Count](https://codeclimate.com/github/martin-helmich/phpunit-json-assert/badges/issue_count.svg)](https://codeclimate.com/github/martin-helmich/phpunit-json-assert)
+[![Maintainability](https://qlty.sh/gh/martin-helmich/projects/phpunit-json-assert/maintainability.svg)](https://qlty.sh/gh/martin-helmich/projects/phpunit-json-assert)
+[![Code Coverage](https://qlty.sh/gh/martin-helmich/projects/phpunit-json-assert/coverage.svg)](https://qlty.sh/gh/martin-helmich/projects/phpunit-json-assert)
 
 This library adds several new assertions to [PHPUnit](https://phpunit.de/)
 that allow you to easily and concisely verify complex data structures (often,
