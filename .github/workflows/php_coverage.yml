@@ -3,6 +3,7 @@ name: Code coverage
 on:
   push:
     branches:
+    pull_request:
 
 jobs:
   coverage:
@@ -21,10 +22,11 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v3.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.codeClimateReporterID }}
+    - name: Run unit tests
+      run: ./vendor/bin/phpunit
+
+    - name: Upload coverage report
+      uses: qltysh/qlty-action/coverage@v2
       with:
-        coverageCommand: ./vendor/bin/phpunit --coverage-clover=clover.xml
-        debug: true
+        token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+        files: build/clover.xml
