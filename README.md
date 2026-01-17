@@ -121,7 +121,7 @@ class MyTestCase extends TestCase
 Asserts that the JSON value found in `$doc` at JSON path `$jsonPath` is equal
 to `$expected`.
 
-##### `assertJsonValueMatches($doc, $jsonPath, PHPUnit_Framework_Constraint $constraint)`
+##### `assertJsonValueMatches($doc, $jsonPath, \PHPUnit\Framework\Constraint $constraint)`
 
 Asserts that the JSON value found in `$doc` at JSON path `$jsonPath` matches
 the constraint `$constraint`.
@@ -132,7 +132,7 @@ Example:
 $this->assertJsonValueMatches(
   $jsonDocument,
   '$.age',
-  PHPUnit_Framework_Assert::greaterThanOrEqual(18)
+  \PHPUnit\Framework\Assert::greaterThanOrEqual(18)
 );
 ```
 
@@ -147,7 +147,7 @@ Example:
 ```php
 $this->assertJsonDocumentMatches($jsonDocument, [
     '$.username' => 'mhelmich',
-    '$.age'      => PHPUnit_Framework_Assert::greaterThanOrEqual(18)
+    '$.age'      => \PHPUnit\Framework\Assert::greaterThanOrEqual(18)
 ]);
 ```
 
