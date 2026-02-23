@@ -127,9 +127,9 @@ class JsonValueMatchesTest extends TestCase
     {
         $type = 'array';
 
-        // Required for PHPUnit 12 support as starting from PHPUnit
+        // Required for PHPUnit > 12 support as starting from PHPUnit
         // version 12 IsTypeclass expects an enum of NativeType.
-        if (str_starts_with(Version::id(), '12.')) {
+        if (version_compare(Version::id(), '12', 'ge')) {
             $type = NativeType::Array;
         }
 
